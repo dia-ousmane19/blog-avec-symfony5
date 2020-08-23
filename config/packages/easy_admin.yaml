@@ -1,0 +1,95 @@
+easy_admin:
+      site_name: 'Gestion de mon blog'
+      user:
+        display_name: true
+        display_avatar: true
+      design:
+        form_theme:
+          - "@EasyAdmin/form/bootstrap_4.html.twig"
+          - "@FOSCKEditor/Form/ckeditor_widget.html.twig"
+        menu:
+            - { label: 'Articles' }
+            - { entity: 'Articles' , label: 'Articles', icon: 'book' }
+            - { entity: 'Categories' , label: 'Categories', icon: 'tag' }
+            - { entity: 'MotsCles' , label: 'Mots cles', icon: 'tag' }
+            - { label: 'Utilisateurs' }
+            - { entity: 'Users' , label: 'Utilisateurs', icon: 'user' }
+            - { label: 'Profil' }
+            - { entity: 'Profil' , label: 'profil', icon: 'user' }
+      formats:
+            datetime: 'd/m/Y H:i'
+      entities:
+          Articles:
+                   class: App\Entity\Articles
+                   label: Articles
+                   list:
+                        fields:
+                              - id
+                              - titre
+                              - { property: 'image', label: 'Image', type: 'image', base_path: '%app.path.upload_image%' }
+                              - { property: 'created_at', label: 'Cree' }
+                              - { property: 'categorie', label: 'Categories', type: 'array' }
+                              - { property: 'motcle', label: 'Mot-cles', type: 'array' }
+                        sort: [ 'created_at','desc' ]
+                   form:
+                        fields:
+                              - titre
+                              - { property: 'contenu', type: 'fos_ckeditor', type_options: { config_name: 'my_config' }}
+                              - { property: 'imageFile', type: 'vich_image', label: 'Image' }
+                              - users
+                              - { property: 'categorie', label: 'categories', type: 'entity', type_options: { class: 'App\Entity\Categories', multiple: true , by_reference: false, attr: { data-widget: 'select2' }}}
+                              - { property: 'motcle', label: 'Mot cles', type: 'entity', type_options: { class: 'App\Entity\MotsCles', multiple: true , by_reference: false,attr: { data-widget: 'select2' }}}
+          Categories:
+                     class: 'App\Entity\Categories'
+                     label: Categories
+                     list:
+                          fields:
+                                - nom
+                                - articles
+                          sort: ['nom', 'asc']
+                     form:
+                         fields:
+                              - nom
+          MotsCles:
+                  class: 'App\Entity\MotsCles'
+                  label: Mots-cles
+                  list:
+                        fields:
+                            - motcle
+                            - articles
+                        sort: ['motcle','asc']
+                  form:
+                      fields:
+                           - motcle
+          Users:
+              class: App\Entity\Users
+              label: 'Utilisateurs'
+              list:
+                  fields:
+                        - id
+                        - email
+                        - NumeroDeTelephone
+                        - Adresse
+                        - actif
+                        - { property: 'roles', label: 'Roles', type: json_array }
+              form:
+                  - email
+                  - { property: 'Roles', label: 'roles', type_options:{ expanded: true, multiple: true,choices: { 'Utilisateur':'ROLE_USER','Administrateur':'ROLE_ADMIN' }}}
+
+                  - NumeroDeTelephone
+                  - Adresse
+          Profil:
+              class: App\Entity\Profil
+              label: 'Profil'
+              list:
+                  fields:
+                        - id
+                        - nom_complet
+                        - { property: 'photo', label: 'Image', type: 'image', base_path: '%app.path.upload_image%' }
+                        - adresse
+                        - users
+              form:
+                    - users
+                    - nom_complet
+                    - { property: 'imageFile', type: 'vich_image', label: 'Image' }
+                    - { property: 'a_propos', type: 'fos_ckeditor', type_options: { config_name: 'my_config' }}

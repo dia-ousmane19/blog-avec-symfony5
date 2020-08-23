@@ -1,0 +1,2 @@
+#!/bin/sh
+rsync -av ./ u7q5ecqg0ufr@od-school.info:~/blog.od-school.info --include=vendor  --exclude-from=.gitignore --exclude=".*"

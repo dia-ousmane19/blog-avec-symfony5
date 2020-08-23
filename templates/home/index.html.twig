@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+{% block stylesheets %} <link rel="stylesheet" href="{{ asset('css/home.css') }}"> {% endblock %}
+
+{% block body %}
+
+
+<div class="d-flex fixed-top flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+  <h5 class="my-0 mr-md-auto font-weight-normal"><a class="text-muted" href="{{ path('home') }}">Blog avec symfony 5</a></h5>
+  <nav class="my-2 my-md-0 mr-md-3">
+    {% for categorie in AllcategorieAndSlug %}
+    <a class="p-2 text-dark" href="{{ path('categorie',{'slug':categorie.slug}) }}">{{ categorie.nom}}</a>
+    {% endfor %}
+  </nav>
+</div>
+<main role="main">
+
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading display-4">Ici,on apprend toujours de nouvelles choses</h1>
+    </div>
+  </section>
+
+  <div class="album py-2 bg-light">
+    <div class="container">
+      <div class="row">
+
+        {% for article in articles %}
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+            <img style="height:216.23px;padding:0" class="col-xs-12 col-md-12 card-img-top" src="{{ asset('/uploads/images/articles_images/') }}{{article.image}}" alt="Card image cap">
+            <div class="card-body">
+              <h3 > <a href="{{ path('article',{'slug':article.slug }) }}" style="text-decoration:none;"><span class="text-muted">{{ article.titre}}</span> </a> </h3>
+              <hr>
+              <i class='fas fa-layer-group'></i>  {% for categorie in article.categorie %}
+              <small class="text-muted">{{ categorie.nom}}</small>
+              {% endfor %}
+              <p class="card-text">{{ article.contenu |slice(0,250) |raw}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a href="{{ path('article',{'slug':article.slug }) }}" class="btn btn-sm btn-outline-secondary">Lire l'article</a>
+                </div>
+                <small class="text-muted">  <i class='far fa-calendar-alt'></i> {{ article.createdAt |date('Y-m-d h\\:i')}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- pagination -->
+
+        {# display navigation #}
+
+
+        <!-- fin -->
+      {% else %}
+      <p>Il n'y en pas encore d'articles</p>
+      {% endfor %}
+
+
+    </div>
+    <div class="navigation">
+        {{ knp_pagination_render(articles) }}
+    </div>
+  </div>
+</div>
+
+</main>
+
+
+
+
+{% endblock %}

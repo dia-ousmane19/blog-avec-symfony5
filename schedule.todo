@@ -1,0 +1,80 @@
+[2020-05-10]
+Notes:Je veux creer un blog pour od-school en 24h
+Ideas:Developper mes competence en symfony
+TODO:
+
+✔ mettre en place la base de donnee @done(2020-05-11 17:37)
+✔ etablir les differentes tables @done(2020-05-11 17:37)
+✔ le login installation @done(2020-05-11 17:36)
+✔ login personnalisation @done(2020-05-10 22:47)
+✔ l'inscription installation @done(2020-05-10 23:11)
+✔ inscription personnalisation  @done(2020-05-10 22:47)
+✔ Automatiser le slug la date de creation et update @done(2020-05-10 23:11)
+✔ upload de fichier @done(2020-05-10 23:33)
+✔ Installer le ckeditor et ses fonctionalites @done(2020-05-11 11:57)
+✔ mettre en place le dashbord easyadmin @done(2020-05-11 13:06)
+✔ la partie vue des articles @done(2020-05-11 14:54)
+✔ la gestion des donnee des articles @done(2020-05-11 16:47)
+✔ la vue des artcles en entier @done(2020-05-11 17:36)
+✔ la recuperation des donnee de la partie vue article en entier @done(2020-05-11 18:00)
+✔  affichage des articles similaires à un article @done(2020-05-11 18:01)
+✔ liste de catégories @done(2020-05-11 22:24)
+☐ recuperation des articles similaires à un article
+☐ profil
+[ ] le fil d'adriane
+☐ activer les liens current
+
+✔ la pagination des articles @done(2020-05-12 22:05)
+[ ] la partie des commentaires
+[ ] la reponse des commentaires
+
+☐ les pages d'erreur
+☐ newsletter
+☐ police couleur des ecrit et derniers reglages
+☐ correction de la langue
+☐ verifier responsive
+[ ] la gestion des roles et restrictions de certaines parties
+[ ] moteur de recherche interne
+
+==================================================
+MA BASE DE DONNEE:
+entite: users  => classe Users
+      - nom_complet
+      - email
+      - roles
+      - password
+      - actif
+      ------------------------------
+entite: articles
+        - titre
+        - slug
+        - contenu
+        - image
+        - created_at
+        - updated_at
+        ------------------------
+entite: categories  =>classe Categories
+      - nom
+      - slug
+      ------------------------------
+entite: motsCles => MotsCles
+      - motCle
+      ------------------------------
+entite: profil => Profil
+      - numero_de_telephone
+      - photo
+      - a_propos
+      - adresse
+      ------------------------------
+entite: commentaires => Commentaires
+      - contenu
+      - pseudo
+      - email
+      - created_at
+
+ ------------------------------
+ entite: reponses_commentaires => reponses_commentaires
+       - reponse
+       - pseudo
+       - email
+       - created_at

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/login.css') }}"> {% endblock %}
+{% block title %}inscription{% endblock %}
+
+{% block body %}
+
+    {{ form_start(registrationForm) }}
+    <h1 class="display-4 text-center">Inscription</h1>
+        <div class="text-center mb-4">
+          <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+          <h1 class="h3 mb-3 font-weight-normal">Inscrivez-vous</h1>
+        </div>
+        <div class="form-label-group">
+            {{ form_row(registrationForm.nom_complet) }}
+        </div>
+        <div class="form-label-group">
+            {{ form_row(registrationForm.email) }}
+        </div>
+
+        <div class="form-label-group">
+        {{ form_row(registrationForm.password) }}
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">M'inscrire</button>
+        <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
+    {{ form_end(registrationForm) }}
+
+{% endblock %}
