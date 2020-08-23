@@ -5,4 +5,4 @@ j’ai utilisé un certain nombre de bundles comme l’automatisation des slugs 
 INSTALLATION
 --------------
 Cloner le projet et faites composer install pour recuperer le dossier vendor.
-pour recuperer les fausses donnee de la base,vous devez-vous rendre 
+pour recuperer les fausses donnee de la base,vous devez-vous rendre https://github.com/dia-ousmane19/blog-avec-symfony5/blob/master/docs/database.sql
